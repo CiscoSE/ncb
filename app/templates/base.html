@@ -1,0 +1,132 @@
+{% block doc -%}
+<!DOCTYPE html>
+<html {% block html_attribs %}{% endblock html_attribs %}>
+
+{%- block html %}
+<head>
+
+    {%- block head %}
+
+    {%- block metas %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {%- endblock metas %}
+
+    {%- block styles %}
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/flatly.css" rel="stylesheet">
+    <link href="/static/css/site.css" rel="stylesheet">
+    <link href="/static/css/animate.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/highlight.css">
+
+    {%- endblock styles %}
+    <title>NCB</title>
+    {%- endblock head %}
+    <link rel="icon" href="/static/images/cisco_icon.ico">
+
+</head>
+<body {% block body_attribs %}{% endblock body_attribs %}>
+{% block body -%}
+
+<div class="container">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a href="/" class="navbar-brand">
+                    <div class="pn-noncollapse">NetConf Browser</div>
+                </a>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar navbar-inverse"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">System <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a target="blank" data-toggle="modal" data-target="#div_help"
+                                   href="#">Usage Tips</a></li>
+                            <li><a target="blank" data-toggle="modal" data-target="#ABOUT"
+                                   href="#">About</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a target="blank" href="https://tools.ietf.org/html/rfc6241">NetConf RFC</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <img class="navbar-logo" src="/static/images/CiscoLogoWhite.png">
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+
+        <div class="progress" style="margin:0px; height:2px">
+            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0"
+                 aria-valuemax="100" style="width: 0%;" id="div_progress"></div>
+        </div>
+    </nav>
+
+</div>
+
+{% block navbar %}
+{%- endblock navbar %}
+
+{% block content %}
+{% endblock %}
+
+
+{%- endblock body %}
+{% include "about_partial.html" %}
+</body>
+{% block scripts %}
+<script src="/static/js/jquery-2.2.4.min.js" type="text/javascript"></script>
+<script src="/static/js/jquery-validator/jquery.validate.min.js" type="text/javascript"></script>
+<script src="/static/js/bootstrap.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="/static/js/bootstrap-notify.min.js"></script>
+<script type="text/javascript" src="/static/js/sijax/sijax.js"></script>
+<script type="text/javascript" src="/static/js/clipboard.min.js"></script>
+<script type="text/javascript" src="/static/js/highlight.min.js"></script>
+<script src="/static/js/site.js"></script>
+<script>
+
+/*
+ * To be executed when all html files that inherit from this one are loaded within a browser
+ */
+$().ready(function() {
+    // validations
+    $("#tool_form").validate({
+	    errorClass: "error",
+        errorElement: "label",
+        rules: {
+		},
+		highlight: function(element, errorClass) {
+                $(element).removeClass(errorClass);
+        }
+	});
+	// Copy to clipboard
+	new Clipboard('#btn_copy_code');
+
+	// Add style to generated python code
+	$('pre code').each(function(i, block) {
+        hljs.highlightBlock(block);
+    });
+});
+
+
+
+
+
+</script>
+{%- endblock scripts %}
+
+{%- endblock html %}
+</html>
+{% endblock doc -%}

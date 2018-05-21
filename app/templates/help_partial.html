@@ -1,0 +1,95 @@
+<div class="modal fade" id="div_help" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="myModalLabel">Tips</h3>
+            </div>
+            <div class="modal-body" style="margin:15px">
+
+                <ul id="myTab" class="nav nav-tabs">
+                    <li class="active">
+                        <a id="lnk_help_connection" href="#help_connection" data-toggle="tab"
+                           onclick="set_help_carousel_buttons('lnk_help_connection')">
+                            Connection
+                        </a>
+                    </li>
+
+                    <li><a id="lnk_help_rpc" href="#help_rpc" data-toggle="tab"
+                           onclick="set_help_carousel_buttons('lnk_help_rpc')">Remote
+                        Calls</a></li>
+                    <li><a id="lnk_help_generate_code" href="#help_generate_code" data-toggle="tab"
+                           onclick="set_help_carousel_buttons('lnk_help_generate_code')">Code Generation</a>
+                    </li>
+                    <li><a id="lnk_help_questions" href="#help_questions" data-toggle="tab"
+                           onclick="set_help_carousel_buttons('lnk_help_questions')">Questions?</a></li>
+                </ul>
+
+                <div id="myTabContent" class="tab-content">
+
+                    <div class="tab-pane fade in active" id="help_connection" style="overflow:scroll;max-height:400px">
+                        <p>The first thing to do is to connect to the NetConf server: </p>
+                        <img src="/static/images/not_connected.png" class="img-thumbnail" width="100%">
+                        <hr/>
+                        <p>Complete the required fields and press <b>Connect</b>. If the connection succeed, the
+                            panel
+                            will
+                            collapse and a capabilities link will be shown</p>
+                        <img src="/static/images/connected.png" class="img-thumbnail" width="100%">
+                        <hr/>
+                        <p>To disconnect the server from the application press the <b>Connected</b> link and then
+                            <b>Disconnect</b>
+                        </p>
+                        <img src="/static/images/disconnect.png" class="img-thumbnail" width="100%">
+                    </div>
+
+                    <div class="tab-pane fade" id="help_rpc" style="overflow:scroll;max-height:400px">
+                        <p>Once you have been connected to the NetConf server, you can start doing remote calls.</p>
+                        <img src="/static/images/rpc_empty.png" class="img-thumbnail" width="100%">
+                        <hr/>
+                        <p>Complete the <b>XML Body</b> field with the xml from your request. You can change the
+                            text
+                            area's height when you click and drag from the right bottom corner.</p>
+                        <img src="/static/images/xml_to_send.png" class="img-thumbnail" width="100%">
+                        <p>Once you have written the xml request, press <b>Send</b></p>
+                        <hr/>
+                        <p>The application will show the response in following text area. Be aware that if an error
+                            occurs before the request is sent (like a malformed xml input), the error message will
+                            be
+                            shown in this area
+                            as well</p>
+                        <img src="/static/images/rpc_response.png" class="img-thumbnail" width="100%">
+                    </div>
+                    <div class="tab-pane fade" id="help_generate_code" style="overflow:scroll;max-height:400px">
+                        <p>The application generates code according to what is written in the <b>XML body</b> field.
+                            There is no need
+                            to press the button <b>Send</b>. You can see the generated code with the <b>Generate
+                                code</b> button</p>
+                        <img src="/static/images/btn_generate_code.png" class="img-thumbnail" width="100%">
+                        <hr/>
+                        <p>You can copy the code easily from the <b>Copy</b> button</p>
+                        <img src="/static/images/btn_copy_code.png" class="img-thumbnail" width="100%">
+                    </div>
+                    <div class="tab-pane fade" id="help_questions" style="overflow:scroll;max-height:400px">
+                        <p>If you need extra help, please feel free to comment under the <a
+                                href="https://github.com/sfloresk/NCB" target="blank">GitHub site</a> or to contact
+                            to
+                            <a href="mailto:sfloresk@cisco.com">sfloresk@cisco.com</a></p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button id="btn_help_previous" type="button" class="btn btn-warning" style="display:none"
+                        data-toggle="tab">
+                    Previous
+                </button>
+                <button id="btn_help_next" type="button" class="btn btn-success" onclick="$('#lnk_help_rpc').click()"
+                        data-toggle="tab">
+                    Next
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

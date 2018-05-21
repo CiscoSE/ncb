@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% set labelclasslg = "col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label" %}
+{% set selectclass = "col-lg-4 col-md-4 col-sm-4 col-xs-4" %}
+{% set txtinputclassmd = "col-lg-6 col-md-6 col-sm-12 col-xs-12" %}
+{% set textareainputclassmd = "col-lg-9 col-md-9 col-sm-12 col-xs-12" %}
+
+{% block head %}
+{{ super() }}
+{% endblock head %}
+{% block navbar %}
+{% endblock navbar %}
+
+{% block content %}
+
+<div class="container">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <form id="tool_form" class="form-horizontal">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="panel panel-primary">
+                    <div class="panel-body">
+                        <div id="div_connection" class="panel panel-default">
+                            <div class="panel-heading">
+                                <a id="div_connection_header" style="color:#2c3e50" data-toggle="collapse"
+                                   href="#connection_body" class="control-label">Not
+                                    connected</a>
+                                <a id="lnk_show_capabilities"
+                                   style="color:#ffffff; float:right; padding:0px; display:none"
+                                   target="blank" data-toggle="modal" data-target="#div_capabilities"
+                                   href="#" class="control-label">Show Capabilities</a>
+                            </div>
+                            <div class="panel-body collapse in" id="connection_body">
+
+                                {% include "server_credentials_partial.html" %}
+
+                                <hr/>
+                                <button id="btn_get_capabilities" type="button"
+                                        class="btn btn-primary" onclick="get_capabilities();" style="float:right">
+                                    Connect
+                                </button>
+                            </div>
+                        </div>
+                        <div id="div_commands" class="panel panel-default">
+                            <div class="panel-heading">
+                                NETCONF requests
+                            </div>
+                            <div class="panel-body">
+
+                                <div class="form-group">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <button id="btn_send_command" type="button"
+                                                class="btn btn-primary" onclick="send_command();" style="float:right">
+                                            Send
+                                        </button>
+                                        <a id="btn_generate_code" type="button"
+                                                style="float:right; margin-right:15px"
+                                                class="btn btn-success" target="blank" data-toggle="modal"
+                                                data-target="#div_generate_code"
+                                                href="#">
+                                            Generate code
+                                        </a>
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="form-group">
+                                    <label class="{{ labelclasslg }}">XML&nbsp;body
+
+                                    </label>
+                                    <div class="{{ textareainputclassmd }}">
+                                                <textarea class="form-control" id="xml_command"
+                                                          name="xml_command"
+                                                          style="font-family: inherit;min-height: 150px;max-width:100%"
+                                                          placeholder='XML to send'
+                                                onchange="generate_code();"></textarea>
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="form-group">
+                                    <label class="{{ labelclasslg }}">Response
+
+                                    </label>
+                                    <div class="{{ textareainputclassmd }}">
+
+                                        <pre style="min-height:150px"><code id="xml_response" class="xml"></code></pre>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% include "server_capabilities_partial.html" %}
+{% include "generate_code_partial.html" %}
+{% include "help_partial.html" %}
+{% endblock content %}
+{% block scripts %}
+{{ super() }}
+{% endblock scripts %}
